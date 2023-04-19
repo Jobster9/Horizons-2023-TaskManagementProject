@@ -1,0 +1,77 @@
+<%- include("partials/header") %>
+<div class="container col-md-8 border p-2">
+<h2 class="mt-2 text-center">Create a new admin account</h2>
+<% if(error){ %>
+  <div class="alert alert-danger alert-dismissible fade show" role="alert" style="font-weight: bold;">
+    <%= error %>
+    <button type="button" class="btn-close" data-bs-dismiss="alert">
+    </button>
+  </div>
+  <% } %>
+    <form class="row g-3 needs-validation mt-5" id="create-admin-form" novalidate action="/create-admin" method="POST">
+        <div class="col-md-4">
+          <label for="firstname" class="form-label">First name</label>
+          <input type="text" class="form-control" id="firstname" name="firstname" required>
+          <div class="valid-feedback"></div>
+          <div class="invalid-feedback">Please enter your first name.</div>
+        </div>
+        <div class="col-md-4">
+          <label for="lastname" class="form-label">Last name</label>
+          <input type="text" class="form-control" id="lastname" name="lastname" required>
+          <div class="valid-feedback"></div>
+          <div class="invalid-feedback">Please enter your last name.</div>
+        </div>
+        <div class="col-md-4">
+          <label for="username" class="form-label">Username</label>
+          <div class="input-group">
+            <span class="input-group-text" id="inputGroupPrepend">@</span>
+            <input type="text" class="form-control" id="username" 
+            name="username" required minlength="3" maxlength="10">
+            <div class="valid-feedback"></div>
+            <div class="invalid-feedback">Username must be between 3-10 characters in length.</div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <label for="email" class="form-label">Email Address</label>
+          <input type="email" class="form-control" id="email" name="email" required>
+          <div class="valid-feedback"></div>
+          <div class="invalid-feedback">Please enter an email.</div>
+        </div>
+        <div class="col-md-4">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password" name="password" required minlength="8">
+            <div class="valid-feedback"></div>
+            <div class="invalid-feedback">Password must be at least 8 characters in length.</div>
+        </div>
+        <div class="col-md-4">
+          <label for="dateofbirth" class="form-label">Date of Birth</label>
+          <input type="date" class="form-control" id="date-of-birth" name="dateofbirth"  required>
+          <div class="valid-feedback"></div>
+          <div class="invalid-feedback">Please enter your date of birth.</div>
+        </div>
+        <div class="col-12">
+          <button class="btn btn-light btn-outline-info " type="submit">Register</button>
+        </div>
+      </form>
+<script>
+
+function formValidation() {
+
+  var form = document.querySelectorAll("#create-admin-form")[0];
+
+  form.addEventListener("submit", function (event) {
+    if (!form.checkValidity()) {
+      event.preventDefault();
+      event.stopPropagation();
+      
+    }
+form.classList.add("was-validated");
+    
+});
+ 
+}
+formValidation();
+
+</script>
+</div>
+<%- include("partials/footer") %>

@@ -1,0 +1,138 @@
+<%- include("partials/header") %>
+<div id="userTaskCollectionData" data-collection="<%- encodeURIComponent(JSON.stringify(userTaskCollection)) %>" style="display:none;"></div>
+<script src="javascripts/calendar.js" defer></script>
+<div class="container-fluid border text-center">
+  <h2 class="mt-2"><%= user.userID %>'s Profile </h2>
+  <div class="row">
+    <div class="col-3 border justify-content-center align-items-center">
+      <img src="<%= picturePath %>" class="img-thumbnail" style="height: 250px; width: 250px; border: 2px solid #20525C;" alt="Profile Picture">
+      <div></div>
+      <label for="uploadPictureFile" class="upload-icon mt-2">
+      <span class="material-icons">upload_file</span>
+    </label>
+    <span id="fileSelected" class="hidden file-box"></span>
+    <form method="POST" action="/profile/upload-picture" enctype="multipart/form-data">
+      <input type="file" id="uploadPictureFile" accept=".jpeg,.png" class="hidden-upload" name="uploadedPictureFile">
+      <div class="item mt-4">
+        <div class="">
+        </div>
+        <div class="mb-4">
+          <input class="btn btn-outline-info"disabled type="submit" name="submitPicture" id="submitPictureBtn" value="Upload Picture">
+          </form>
+        </div>
+        <div class="mb-4">
+          <button class="btn btn-light btn-outline-info" id="enableAboutMebtn"type="button" onclick="enableTextArea(textArea,submitNewAboutMeBtn)">Edit About Me</button>
+        </div>
+        <div class="mb-4">
+          <a href="/tasklists" class="btn btn-light btn-outline-info">My Tasklists</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-3 border">
+      <h3 style="color: #20525C"> About Me </h3>
+      <form method="POST" action="/profile">
+      <div class="mb-3">
+        <textarea class="form-control" id="Textarea" name="aboutMeInput" style="border: 2px solid #20525C;"rows="12" readonly><%= aboutMe %></textarea>
+      </div>
+      <input class="btn btn-light btn-outline-info mb-3 hidden" name="submitAboutMe"onclick="disableTextArea(textArea,submitNewAboutMeBtn)" id="submitNewAboutMeBtn" type="submit" value="Submit Changes">
+    </div>
+  </form>
+    <div class="col-6 border">
+      <h3 style="color: #20525C"> Calendar </h3>
+      <div class="calendar calendar-body">
+        <div class="calendar-card">
+        <header>
+          <p class="current-date"></p>
+          <div class="icons">
+            <span id="prev" class="material-icons">chevron_left</span>
+            <span id="next" class="material-icons">chevron_right</span>
+          </div>
+        </header>
+<ul class="weeks">
+  <li>Sun</li>
+  <li>Mon</li>
+  <li>Tue</li>
+  <li>Wed</li>
+  <li>Thu</li>
+  <li>Fri</li>
+  <li>Sat</li>
+</ul>
+<ul class="days"></ul>
+</div>
+</div>
+
+<!-- Display Tasks Modal -->
+<div class="modal fade" id="tasksModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="tasksModalLabel">Task Details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body" id="tasksDisplay">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+
+//About me elements
+const enableAboutMeBtn = document.getElementById("enableAboutMebtn");
+const textArea = document.getElementById("Textarea");
+const submitNewAboutMeBtn = document.getElementById("submitNewAboutMeBtn");
+
+//Picture file elements
+const fileuploadLabel = document.querySelector('label[for="uploadPictureFile"]');
+const submitPictureBtn = document.getElementById("submitPictureBtn");
+const fileInput = document.getElementById('uploadPictureFile');
+const displayFileSelected = document.getElementById('fileSelected');
+const validFileIcon = "<span class='material-icons-outlined' style='vertical-align: -6px; color:#218b5a'>check_circle</span>";
+const invalidFileIcon = "<span class='material-icons-outlined' style='vertical-align: -6px; color:#e35d69'>error_outline</span>";
+  
+//enable file upload button 
+fileInput.addEventListener('change', () => {
+  const fileName = "File: "+ fileInput.files[0].name;
+  const validContent = fileName + validFileIcon;
+  const invalidContent = fileName + invalidFileIcon;
+  displayFileSelected.classList.remove('hidden');
+  displayFileSelected.innerHTML = validContent;
+  submitPictureBtn.removeAttribute('disabled');
+  submitPictureBtn.classList.add('btn-light');
+
+  //file validation checks
+  const file = fileInput.files[0];
+  const maxSize = 5 * 1024 * 1024; // 5 MB
+  const allowedTypes = ['image/jpeg', 'image/png', 'image/jpg'];
+  if (!allowedTypes.includes(file.type)) {
+    alert('Please select a JPEG or PNG image.');
+    displayFileSelected.innerHTML = invalidContent;
+    submitPictureBtn.setAttribute('disabled', 'disabled');
+    return;
+  }
+  if (file.size > maxSize) {
+    submitPictureBtn.setAttribute('disabled', 'disabled');
+    alert('Please select a file smaller than 5 MB.');
+    displayFileSelected.innerHTML = invalidContent;
+    return;
+  }
+
+});
+
+function enableTextArea(textarea,submitNewAboutMeBtn) {
+  textarea.removeAttribute('readonly');
+  submitNewAboutMeBtn.classList.remove('hidden');
+}
+
+function disableTextArea(textarea,submitNewAboutMeBtn) {
+  textarea.setAttribute('readonly',true);
+  submitNewAboutMeBtn.classList.add('hidden');
+}
+
+</script>
+
+
+
+<%- include("partials/footer") %>

@@ -1,0 +1,55 @@
+<%- include("partials/header") %>
+<div class="container">
+    <h2 class="mt-2 text-center">Login</h2>
+<div class="row justify-content-center mt-2">
+    <div class="col-4 container">
+   <form class="needs-validation" id="login-form" novalidate action="/login" method="POST">
+    <input type="hidden" id="username-server-error" value="<%= usernameError ? usernameError : '' %>">
+    <input type="hidden" id="password-server-error" value="<%= passwordError ? passwordError : '' %>">
+    <div class="mb-3">
+      <label for="username" class="form-label">Username</label>
+      <input type="text" class="form-control" name="username" id="username-login" required>
+      <div class="invalid-feedback"><%= usernameError ? usernameError : 'Username required' %></div>
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input type="password" name="password" class="form-control" id="password-login" required>
+      <div class="invalid-feedback"><%= passwordError ? passwordError : 'Password required' %></div>
+    </div>
+    <button type="submit" class="btn btn-light btn-outline-info">Login</button>
+  </form>
+  </div>
+</div>
+<script>
+function formValidation() {
+  const form = document.querySelectorAll("#login-form")[0];
+
+  const usernameServerError = document.getElementById("username-server-error").value;
+  const passwordServerError = document.getElementById("password-server-error").value;
+  const usernameInput = document.getElementById("username-login");
+  const passwordInput = document.getElementById("password-login");
+
+  if (usernameServerError) {
+    usernameInput.classList.add("is-invalid");
+  } else {
+    usernameInput.classList.remove("is-invalid");
+  }
+  if (passwordServerError) { 
+    passwordInput.classList.add("is-invalid");
+  } else {
+    passwordInput.classList.remove("is-invalid");
+  }
+
+  form.addEventListener("submit", function (event) {
+    if (!form.checkValidity()) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+    form.classList.add("was-validated");
+  });
+}
+formValidation();
+    
+</script>
+</div>
+<%- include("partials/footer") %>

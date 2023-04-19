@@ -1,0 +1,48 @@
+<%- include("partials/header") %>
+<div class="container">
+  <h2 class="mt-2 text-center">Authentication</h2>
+<div class="row justify-content-center mt-5">
+  <p class="col-7 container">As a security measure we have sent an authentication code to the email address associated with this account. 
+    Please enter the code provided below to access your account.
+  </p>
+    <div class="col-6 container ">
+   <form class="needs-validation" id="auth-form" novalidate action="/login-auth" method="POST">
+    <input type="hidden" id="server-error" value="<%= error ? error : '' %>">
+    <div class="mb-3">
+      <label for="auth-code" class="form-label">Authentication Code</label>
+      <input type="text" class="form-control" id="auth-code" name="authCode" required>
+      <div class="invalid-feedback"><%= error ? error : 'Please enter a code' %></div>
+    </div>
+    <button type="submit" class="btn btn-light btn-outline-info">Authenticate</button>
+  </form>
+  </div>
+</div>
+<script>
+
+function formValidation() {
+    var form = document.querySelectorAll("#auth-form")[0];
+    
+    var ServerError = document.getElementById("server-error").value;
+    var codeInput = document.getElementById("auth-code");
+  if (ServerError) {
+    codeInput.classList.add("is-invalid");
+  } else {
+    codeInput.classList.remove("is-invalid");
+  }
+
+    form.addEventListener("submit", function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault();
+          event.stopPropagation();
+          
+        }
+    form.classList.add("was-validated");
+        
+    });
+     
+}
+formValidation();
+    
+</script>
+</div>
+<%- include("partials/footer") %>

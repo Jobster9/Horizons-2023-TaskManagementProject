@@ -1,0 +1,286 @@
+
+html,body{ margin:0}
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;0,900;1,400;1,500;1,700;1,900&display=swap');
+
+/* CSS grid checker { border: 1px solid red; }*/
+
+/*-----------General classes----------------*/
+
+:root {
+  --bs-blue: #0d6efd;
+  --bs-indigo: #6610f2;
+  --bs-purple: #6f42c1;
+  --bs-pink: #d63384;
+  --bs-red: #dc3545;
+  --bs-orange: #fd7e14;
+  --bs-yellow: #ffc107;
+  --bs-green: #198754;
+  --bs-teal: #20c997;
+  --bs-cyan: #0dcaf0;
+  --bs-white: #fff;
+  --bs-gray: #6c757d;
+  --bs-gray-dark: #343a40;
+  --bs-primary: #0d6efd;
+  --bs-secondary: #6c757d;
+  --bs-success: #198754;
+  --bs-info: #0dcaf0;
+  --bs-warning: #ffc107;
+  --bs-danger: #dc3545;
+  --bs-light: #f8f9fa;
+  --bs-dark: #212529;
+  --bs-font-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
+}
+
+
+
+.bodybg-color{
+  background-color: rgb(243, 243, 243);
+}
+
+.bg-color-cyan{
+  background-color: #0bb9db;
+}
+
+.box-shadow{
+  box-shadow: 0px 15px 20px -10px black;
+}
+
+.box-shadow-spread{
+  box-shadow: 0px 15px 20px 10px black;
+}
+
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    display: block;
+    width: 100%;
+    max-height: 60px;
+    white-space: nowrap;
+    line-height: 40px; 
+    background-color: #0ba8c7;
+  }
+
+  .hidden{
+    visibility:hidden;
+  }
+
+
+  h2,h3,h4,h5{
+    color: #20525C;
+  }
+
+
+/*----------Navbar & Custom Bootstrap classes----------*/
+
+.top-navbar{
+    height: 20px;
+    width:100%;
+    background-color: #0ba8c7;
+}
+
+/* change the background color */
+.navbar-custom {
+  background-color: #0bb9db;
+  border-bottom: 2px solid #088EA8;
+}
+
+/* change the brand and text color */
+.navbar-custom .navbar-brand,
+.navbar-custom .navbar-text {
+  color: #ffffff;
+}
+
+/* change the link color */
+.navbar-custom .navbar-nav .nav-link {
+  color: #ffffff;
+}
+
+/* change the color of active or hovered links */
+.navbar-custom .nav-item.active .nav-link,
+.navbar-custom .nav-item:focus .nav-link,
+.navbar-custom .nav-item:hover .nav-link {
+  color: #20525C;
+}
+
+.page-item active{
+  background-color: #20525C;
+}
+
+/*----------Profile----------*/
+
+.img-thumbnail{
+  margin-top: 12%;
+  border: 2px solid #20525C;
+}
+textarea{
+border: 2px solid #20525C;
+}
+
+.file-box{
+  border: 3px dotted #958f8f;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+
+.hidden-upload {
+  position: absolute;
+  clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 0;
+  border: 0;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+}
+
+/*----------Icons----------*/
+
+.upload-icon {
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #0dcaf0;
+  border: 2px solid #0dcaf0;
+  padding: 10px;
+  border-radius: 15%;
+  font-size: 10px;
+  transition: all 0.3s ease-in-out;
+  z-index: 0;
+  left: 5%;
+}
+
+.upload-icon:hover {
+  background-color: #0dcaf0;
+  color: #000;
+  cursor: pointer;
+}
+
+
+/*-------------Calendar resources---------------*/
+
+@import url('https://fonts.googleapis.com/css22?family=Poppins:wght@400;500;600&display=swap');
+.calendar{
+  margin:0;
+  padding: 0;
+  box-sizing:border-box;
+  font-family:'Poppins',sans-serif;
+  
+}
+.calendar-body{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #20525C;
+  background: #088EA8;
+  border-radius: 5px;
+}
+.calendar-body header{
+  padding: 15px 20px 0px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+header .current-date{
+  font-size: 1.45rem;
+  font-weight: 600;
+}
+
+header .icons span{
+  height: 38px;
+  width: 38px;
+  margin: 0 1px;
+  text-align: center;
+  border: 1px solid #0bb9db;
+  font-size: 1.9rem;
+  color: #0bb9db;
+  cursor: pointer;
+  border-radius: 5px;
+  line-height: 38px;
+  transition: all 0.3s ease-in-out;
+  background: #f2f2f2;
+}
+header .icons span:hover{
+  background: #0bb9db;
+  color:#212529;
+}
+
+header .icons span:last-child{
+  margin-right: -10px;
+
+}
+
+.calendar-card{
+  width: 100%;
+  padding: 10px;
+  margin: 10px;
+  border: 3px solid #20525C;
+  border-radius: 5px;
+  background:#ebf3f3;
+}
+
+.calendar ul{
+ display: flex;
+ list-style: none;
+ flex-wrap: wrap;
+ text-align: center;
+
+}
+.calendar .days {
+  margin-bottom: 20px;
+  }
+
+.calendar .weeks li{
+font-weight: 600;
+}
+
+.calendar ul li{
+  position: relative;
+  width: calc(100% / 7);
+  text-align: center;
+}
+
+.calendar .days li{
+  cursor: pointer;
+  z-index: 1;
+  margin-top: 30px;
+  }
+.days li.inactive{
+  color:#aaa;
+}
+
+.days li.active{
+  color:#fff;
+}
+
+.days li.task{
+  color:#fff;
+}
+
+.calendar .days li::before{
+   position: absolute;
+   content:"";
+   height: 40px;
+   width: 40px;
+   top: 55%;
+   right: 8%;
+   border-radius: 15%;
+   z-index: -1;
+   transform: translate(-50%, -50%);
+}
+
+
+.calendar .days li:hover::before{
+  background: #b7e5e8;
+}
+
+.days li.active::before{
+  background: #4FC9E1;
+}
+
+.days li.task::before{
+  background: #DB6B0B;
+}

@@ -1,0 +1,45 @@
+<div class="top-navbar">
+</div>
+<nav class=" navbar navbar-custom navbar-expand-lg sticky-top ">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">Horizons</a>
+
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0"> 
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/">Home</a>
+          </li> <% if(!user){ %>
+          <li class="nav-item">
+            <a class="nav-link" href="/register">Register</a>
+          </li> <% }%>
+          <% if (user && (user.role=="Admin"||user.role=="Customer")) { %>
+            <li class="nav-item">
+                <a class="nav-link active" href="/profile">Profile</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="/tasklists">Tasklist</a>
+          </li>
+          <% if (user.role=="Admin") { %>
+            <li class="nav-item">
+                <a class="nav-link active" href="/view-users/?page=1">View Users</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="/create-admin">Create Admin</a>
+          </li>
+            <%}} %>           
+        </ul>
+        <% if(!user) {%>
+        <div class="d-flex">
+          <a href="/login" class="btn btn-outline-light">Login</a>
+        </div>
+        <% }else{ %>
+            <div class="d-flex p-2" style="color:white;">Logged in as: <%= user.userID  %></div>
+            <div class="d-flex">
+              <form action="/" method="POST">
+                <button type="submit" class="btn btn-outline-light">Logout</button>
+              </form>
+            </div>
+            </div>
+          <% } %>
+      </div>
+  </nav>
+  <body class="bodybg-color">
